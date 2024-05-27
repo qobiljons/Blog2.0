@@ -1,22 +1,24 @@
 {% extends 'base.html' %}
 {% block title %}Home{% endblock %}
-<!--{% block content %}-->
-<!--<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">-->
 
+{% block content %}
+<!--&lt;!&ndash; Carousel &ndash;&gt;-->
+<!--<div id="carouselExampleCaptions" class="carousel slide mb-5" data-bs-ride="carousel">-->
 <!--  <div class="carousel-inner">-->
-<!--    {%for article in object_list%}-->
-<!--    <div class="carousel-item active">-->
-<!--       {% if article.photo %}-->
-<!--            <img src="{{article.photo.url}}" class="d-block w-100 img-fluid" alt="First Slide">-->
-<!--          {% else %}-->
-<!--             <img src="https://contenthub-static.grammarly.com/blog/wp-content/uploads/2019/08/August-blog-header-Amplification.png" class="d-block w-100 img-fluid" alt="First Slide">-->
-<!--          {% endif %}-->
+<!--    {% for article in object_list %}-->
+<!--    <div class="carousel-item {% if forloop.first %}active{% endif %}">-->
+<!--      {% if article.photo %}-->
+<!--      <img src="{{ article.photo.url }}" class="d-block w-100" alt="Article Image">-->
+<!--      {% else %}-->
+<!--      <img src="https://contenthub-static.grammarly.com/blog/wp-content/uploads/2019/08/August-blog-header-Amplification.png" class="d-block w-100" alt="Default Image">-->
+<!--      {% endif %}-->
 <!--      <div class="carousel-caption d-none d-md-block">-->
-<!--        <h5>{{article.title}}</h5>-->
-<!--        <p>{{article.subtitle}}</p>-->
+<!--        <h5>{{ article.title }}</h5>-->
+<!--        <p>{{ article.subtitle }}</p>-->
+<!--        <a href="{% url 'article_detailed' article.pk %}" class="btn btn-primary">Read More</a>-->
 <!--      </div>-->
 <!--    </div>-->
-<!--    {%endfor%}-->
+<!--    {% endfor %}-->
 <!--  </div>-->
 <!--  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">-->
 <!--    <span class="carousel-control-prev-icon" aria-hidden="true"></span>-->
@@ -28,24 +30,30 @@
 <!--  </button>-->
 <!--</div>-->
 
-<!--Articles-->
-
-<main class="cards container my-5">
+<!-- Articles -->
+<div class="container">
   <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
     {% for article in object_list %}
     <div class="col">
-        <div class="card h-100 border-0 d-flex flex-column">
-          {% if article.photo %}
-            <img src="{{ article.photo.url }}" class="card-img-top" alt="Card Image">
-          {% else %}
-            <img src="https://contenthub-static.grammarly.com/blog/wp-content/uploads/2019/08/August-blog-header-Amplification.png" class="card-img-top" alt="Default Image">
-          {% endif %}
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title">{{ article.title }}</h5>
-            <p class="card-text">{{ article.subtitle }}</p>
-            <a href="{%url 'article_detailed' article.pk%}" class="btn btn-outline-primary mt-auto stretched-link">More</a>
+      <div class="card h-100 border-0 shadow">
+        {% if article.photo %}
+        <img src="{{ article.photo.url }}" class="card-img-top" alt="Article Image">
+        {% else %}
+        <img src="https://contenthub-static.grammarly.com/blog/wp-content/uploads/2019/08/August-blog-header-Amplification.png" class="card-img-top" alt="Default Image">
+        {% endif %}
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">{{ article.title }}</h5>
+          <p class="card-text">{{ article.subtitle }}</p>
+          <div class="card-author-date">
+            <p class="card-text"><strong>Author:</strong> {{ article.author }}</p>
+            <p class="card-text"><strong>Date Published:</strong> {{ article.date }}</p>
           </div>
+          <p class="card-text"><strong>Views:</strong> {{ article.views }}</p>
         </div>
+        <div class="pb-2 ps-2">
+          <a href="{% url 'article_detailed' article.pk %}" class="btn btn-primary read-more stretched-link btn-sm">Read More</a>
+        </div>
+      </div>
     </div>
     {% empty %}
     <div class="col">
@@ -53,6 +61,35 @@
     </div>
     {% endfor %}
   </div>
-</main>
+</div>
 
+
+<style>
+  /* Animation for card on hover */
+.card {
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(15px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.card-img-top {
+  width: 100%;
+  height: 200px; /* Adjust the height as needed */
+  object-fit: cover;
+}
+
+.read-more {
+  background-color: #007bff; /* Primary color, adjust as needed */
+  border-radius: 5px;
+  padding: 10px 20px;
+}
+
+.read-more:hover {
+  background-color: #0056b3; /* Darker shade of primary color on hover */
+}
+
+</style>
 {% endblock %}

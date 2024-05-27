@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.urls import reverse
+from ckeditor.fields import RichTextField
 
 # Create your models here.
 
@@ -8,7 +9,7 @@ from django.urls import reverse
 class Article(models.Model):
     title = models.CharField(max_length=255)
     subtitle = models.CharField(max_length=255, blank=True)
-    body = models.TextField()
+    body = RichTextField()
     photo = models.ImageField(upload_to="images/", blank=True)
     date = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
@@ -18,5 +19,7 @@ class Article(models.Model):
 
     def get_absolute_path(self):
         return reverse('home', args=[str(self.pk)])
+
+
 
 
