@@ -1,13 +1,34 @@
-{%extends 'base.html'%}
+{% extends 'base.html' %}
 
-{%block title%}Delete Post{%endblock%}
+{% block title %}Delete Article{% endblock %}
 
-{%block content%}
-
-<h1>Delete Post</h1>
-<form action="" method="post">
-    {% csrf_token %}
-    <p>{{article.title}} Delete? </p>
-    <input type="submit" value="Delete">
-</form>
-{%endblock%}
+{% block content %}
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header">
+            <h1 class="card-title display-4">Delete Post</h1>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4">
+                    {% if article.photo %}
+                        <img src="{{ article.photo.url }}" class="img-fluid rounded mb-3" alt="Article Image">
+                    {% else %}
+                        <img src="https://via.placeholder.com/300" class="img-fluid rounded mb-3" alt="Placeholder Image">
+                    {% endif %}
+                </div>
+                <div class="col-md-8">
+                    <p class="card-text lead">Are you sure you want to delete the post titled "<strong>{{ article.title }}</strong>"?</p>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer text-right">
+            <form action="" method="post" class="d-inline">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger btn-lg">Delete</button>
+                <a href="{% url 'article_detailed' article.pk %}" class="btn btn-secondary btn-lg">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
