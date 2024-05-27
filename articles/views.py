@@ -19,14 +19,16 @@ class ArticleDetailedView(DetailView):
 
 class ArticleCreateView(CreateView):
     model = Article
-    template_name = "post.html"
+    template_name = "create_view.html"
+    fields = ['title', 'subtitle', 'body', 'photo', 'author']
+    success_url = reverse_lazy("home")
 
 
 class ArticleUpdateView(UpdateView):
     model = Article
     fields = ['title', 'subtitle', 'body', 'photo']
     template_name = "update_view.html"
-    success_url = reverse_lazy("update")
+    success_url = reverse_lazy("home")
 
 
 class ArticleDeleteView(DeleteView):
