@@ -26,12 +26,13 @@ class ArticleUpdateView(UpdateView):
     model = Article
     fields = ['title', 'subtitle', 'body', 'photo']
     template_name = "update_view.html"
-    success_url = reverse_lazy("home")
+    success_url = reverse_lazy("update")
 
 
 class ArticleDeleteView(DeleteView):
     model = Article
     template_name = "delete.html"
+    success_url = reverse_lazy("home")
 
 
 
