@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'whitenoise.runserver_nostatic',
     'crispy_forms',
-    'crispy_bootstrap5',
     'ckeditor',
     'ckeditor_uploader',
     'accounts',
