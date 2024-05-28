@@ -27,7 +27,7 @@ SECRET_KEY = env.str("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool("DEBUG", default=True)
-
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 ALLOWED_HOSTS = ['.herokuapp.com', '127.0.0.1']
 
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'whitenoise.runserver_nostatic',
     'crispy_forms',
+    "crispy_bootstrap5",
     'ckeditor',
     'ckeditor_uploader',
     'accounts',
