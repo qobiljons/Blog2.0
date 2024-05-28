@@ -1,4 +1,6 @@
+
 {% extends 'base.html' %}
+{%load static%}
 {% block title %}About Me{% endblock %}
 {% block content %}
 <main class="container my-5">
@@ -37,8 +39,7 @@
                 <h6 class="fw-bold">Work Experience</h6>
                 <div class="card mb-2">
                     <div class="card-body">
-                        <p class="card-text"><strong>Company:</strong> Company Name (Position, Year)</p>
-                        <p class="card-text"><strong>Company:</strong> Company Name (Position, Year)</p>
+                        <p class="card-text"><strong>Company:</strong> Upwork (Freelance Web Developer, 2023- Current)</p>
                     </div>
                 </div>
             </div>
@@ -63,6 +64,16 @@
                     </div>
                 </div>
             </div>
+            <div>
+                <h6 class="fw-bold">Social Media Accounts</h6>
+                <div class="card mb-2">
+                    <div class="card-body">
+                        <p class="card-text"><a href="https://github.com/qobiljons">GitHub</a></p>
+                        <p class="card-text"><a href="https://www.linkedin.com/in/khayrullayev-qobiljon-94aa85283/">LinkedIn</a></p>
+
+                    </div>
+                </div>
+            </div>
 
 
 
@@ -74,7 +85,7 @@
          <div class="col-lg-4 d-flex flex-column">
             <div class="card shadow-lg border-0 mb-4 flex-grow-1 hover-card">
                 <div class="text-center p-3">
-                    <img src="https://img.freepik.com/free-photo/handsome-male-entrepreneur-suit-sit-office-desk-with-laptop-look-pleased_176420-15923.jpg?t=st=1716656605~exp=1716660205~hmac=ab4f15e2ceac99566b87af471135d250141d6280c28e21bacd9028b044f911f6&w=1380" class="img-fluid rounded-10 shadow-lg" alt="My Picture">
+                    <img src="{%static 'images/img.png' %}" class="img-fluid rounded-10 shadow-lg" alt="My Picture">
                 </div>
             </div>
             <div class="card shadow-lg border-0 mb-4 flex-grow-1">

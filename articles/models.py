@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model
 from django.urls import reverse
 from ckeditor.fields import RichTextField
 
+
 # Create your models here.
 
 
@@ -17,9 +18,17 @@ class Article(models.Model):
     def __str__(self):
         return self.title
 
-    def get_absolute_path(self):
-        return reverse('home', args=[str(self.pk)])
+    def get_absolute_url(self):
+        return reverse('post', args=[str(self.pk)])
 
 
+class Comments(models.Model):
+    article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='comments')
+    comment = models.CharField(max_length=150)
+    author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.comment
 
+    def get_absolute_url(self):
+        return reverse('post', args=[str(self.pk)])
