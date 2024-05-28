@@ -2,6 +2,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
+.env
 
 # C extensions
 *.so
@@ -25,6 +26,7 @@ venv.bak/
 *.pyd
 *.db
 *.sqlite3
+
 
 # If your build process includes running collectstatic, you might also want to include:
 staticfiles/
